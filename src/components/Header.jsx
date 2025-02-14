@@ -1,11 +1,11 @@
+import { useMemo } from "react"
 
 export default function Header({cart}) {
 
-    // State Derivation (se deriva de otro estado, del state cart, se usa para no repetir lógica)
-    const isEmpty = () => cart.length === 0
+    // State Derivation ? estamos usando useMemo para calcular si el carrito está vacío
+    const isEmpty = useMemo( () => cart.length === 0, [cart])
     // State derivation para el total
-    const cartTotal = () => cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
-
+    const cartTotal = useMemo ( () => cart.reduce((acc, item) => acc + (item.price * item.quantity), 0), [cart])
 
     return (
         <header className="py-5 header">
@@ -24,7 +24,7 @@ export default function Header({cart}) {
 
                               <div id="carrito" className="bg-white p-3">
                                 {/*Ternary Operator - Se manda a llamar la función isEmpty*/}
-                              {isEmpty() ? (
+                              {isEmpty ? (
                                     <p className="text-center">El carrito está vacío</p>
                               ) : (
                                 <>
@@ -76,7 +76,7 @@ export default function Header({cart}) {
                                       </tbody>
                                   </table>
 
-                                  <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal()}</span></p>
+                                  <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                               </>
                               )}
                                   <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
