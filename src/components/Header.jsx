@@ -1,6 +1,8 @@
 
 export default function Header({cart}) {
-    const cartMessage = cart.length === 0 ? "El carrito está vacío" : "Productos en el carrito"
+
+    // State Derivation (se deriva de otro estado, del state cart, se usa para no repetir lógica)
+    const isEmpty = () => cart.length === 0
 
 
     return (
@@ -19,7 +21,10 @@ export default function Header({cart}) {
                               <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
 
                               <div id="carrito" className="bg-white p-3">
-                                  <p className="text-center">{cartMessage}</p>
+                              // Ternary Operator - Se manda a llamar la función isEmpty
+                              {isEmpty() ? (
+                                    <p className="text-center">El carrito está vacío</p>
+                              ) : (
                                   <table className="w-100 table">
                                       <thead>
                                           <tr>
@@ -67,6 +72,7 @@ export default function Header({cart}) {
                                         ))}
                                       </tbody>
                                   </table>
+                              )}
 
                                   <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
                                   <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
