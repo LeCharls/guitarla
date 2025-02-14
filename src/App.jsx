@@ -8,7 +8,7 @@ function App() {
   //UseState
   const [data, setData] = useState(db)
   const [cart, setCart] = useState([])
-
+  // Agregar al carrito y actualizar la cantidad
   function addToCart(item) {
 
     const itemInCart = cart.find((element) => element.id === item.id)
