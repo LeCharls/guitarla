@@ -8,6 +8,7 @@ function App() {
   //UseState
   const [data, setData] = useState(db)
   const [cart, setCart] = useState([])
+
   // Agregar al carrito y actualizar la cantidad
   function addToCart(item) {
 
@@ -25,7 +26,10 @@ function App() {
 
   return (
     <> 
-      <Header/>
+      <Header
+        // Pasamos el carrito al componente Header
+        cart={cart}
+      />
       
         <main className="container-xl mt-5">
             <h2 className="text-center">Nuestra Colección</h2>
