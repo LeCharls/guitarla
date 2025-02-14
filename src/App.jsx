@@ -24,11 +24,18 @@ function App() {
 
   }
 
+  // función para eliminar un item del carrito
+  function removeFromCart(id) {
+    setCart(cart.filter((item) => item.id !== id))
+  }
+
   return (
     <> 
       <Header
         // Pasamos el carrito al componente Header
         cart={cart}
+        // Pasamos la función removeFromCart al componente Header
+        removeFromCart={removeFromCart}
       />
       
         <main className="container-xl mt-5">
